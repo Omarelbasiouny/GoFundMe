@@ -23,6 +23,7 @@ if  Auth != "1" and Auth != "2":
 def signup(Auth):
     i = 0
     if Auth == "1" :
+        global PWRD
         print("Please Enter the required information to Signup")
         FN = input("First Name:")
         LN = input("Last Name:")
@@ -53,6 +54,7 @@ def signup(Auth):
 
 def Applogin(Auth):
     if Auth == "2":
+        global PWRD
         print("login")
         with(open('Auth.csv', 'r')) as Authfile:
             reader = csv.reader(Authfile)
@@ -87,9 +89,9 @@ else:
 
 def Pathq():
     global Path
-    Path = input("Do you want to \n 1-Donate\n 2-Start a new fundraising")
+    Path = input("Do you want to \n 1-Donate\n 2-Start a new fundraising\n 3-Setting")
 Pathq()
-while Path != "1" and Path != "2":
+while Path != "1" and Path != "2" and Path != "3":
     print("Write the number of your choice")
     Pathq()
 # STEP 2 Fundraising
@@ -131,7 +133,7 @@ def new_case():
                 Urgencyf()
 
         Urgencyf()
-        filecom = [title, details,"I still need", target, s_date, e_date]
+        filecom = [title, details,"I still need", target, s_date, e_date, PWRD]
         filecom1 = "\n".join(filecom)
         x = str(random.randint(1, 9999))
         save_path = "/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/"
@@ -154,7 +156,7 @@ def donate(Path):
                 case_id = input("please enter the case ID")
                 casepass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+case_id
                 with open(casepass, "r") as case_fileR:
-                        print(case_fileR.read())
+                        print("\n".join(case_fileR.readlines()[1:6]))
                 with open(casepass, "r") as case_fileR:
                      NM = case_fileR.readlines()[3]
                 needed_money = int(NM)
@@ -179,7 +181,25 @@ def donate(Path):
                 donate("1")
         findcase(find_case)
 
-
-
 donate(Path)
+
+def setting(Path):
+    if Path == "3":
+        SettQ = input("1\ Edit\n 2\ Delete")
+    if SettQ == "2":
+        rm_case_id= input("Enter the id of the case you want to delete")
+        PWRD = input("Password:")
+        rmd_case = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+rm_case_id
+        with open(rmd_case, "r") as rmd_case_file:
+               for x in rmd_case_file.readlines():
+                   if x == PWRD:
+                       os.remove(rmd_case)
+                       print("Your case has been Removed")
+    elif SettQ == "1":
+        print("Sorry, Editing is not supported currently ")
+        setting(3)
+    else:
+        setting(3)
+
+setting(Path)
 print("Thank You for using our app\n Always remember that the happiest people are not those getting more, but those giving more.")
