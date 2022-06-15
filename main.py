@@ -13,7 +13,7 @@ regex_target = "\d+$"
 # Title
 print("GoFundMe App!")
 
-# STEP 1 App Authentication
+# # STEP 1 App Authentication
 def loginQ():
     global Auth
     Auth = (input(" 1-Signup\n 2-Login\n"))
@@ -184,36 +184,56 @@ def donate(Path):
 donate(Path)
 
 def setting(Path):
+    SettQ = ""
     if Path == "3":
-        SettQ = input("1- Edit\n 2- Delete\n 3-list your Cases")
-    if SettQ == "2":
-        rm_case_id= input("Enter the id of the case you want to delete")
-        PWRD = input("Password:")
-        rmd_case = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+rm_case_id
-        with open(rmd_case, "r") as rmd_case_file:
-               for x in rmd_case_file.readlines():
-                   if x == PWRD:
+        SettQ = input("SETTING\n 1- Edit\n 2- Delete\n 3-list your Cases")
+        if  SettQ == "2":
+            rm_case_id= input("Enter the id of the case you want to delete")
+            PWRD = input("Password:")
+            rmd_case = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+rm_case_id
+            with open(rmd_case, "r") as rmd_case_file:
+                   if rmd_case_file.readlines()[6] == PWRD:
                        os.remove(rmd_case)
                        print("Your case has been Removed")
-    elif SettQ == "1":
-        print("Sorry, Editing is not supported currently ")
-        setting(3)
+                   else:
+                       print("Wrong Password!")
 
-    elif SettQ == "3":
-        PWRD = input("Enter your Password:")
-        listoffilenames = []
-        for x in os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases"):
-            lpass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+x
-            listoffilenames.append(lpass)
-        for item in listoffilenames:
-            with open (item, "r") as searchfile:
-                h = searchfile.readlines()[6]
-                if h == PWRD:
-                    searchresult = []
-                    searchresult.append(item)
-        print([w[59:] for w in searchresult])
-    else:
-        setting(3)
+        elif SettQ == "1":
+            print("Sorry, Editing is not supported currently ")
+            setting(3)
+
+        elif SettQ == "3":
+            PWRD = input("Enter your Password:")
+            listoffilenames = []
+            for x in os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases"):
+                lpass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+x
+                listoffilenames.append(lpass)
+                for item in listoffilenames:
+                    with open (item, "r") as searchfile:
+                        h = searchfile.readlines()[6]
+                        if h == PWRD:
+                            searchresult = []
+                            searchresult.append(item)
+                            print([w[59:] for w in searchresult])
+                        else:
+                            continue
+
+
+        else:
+             setting(3)
 
 setting(Path)
+
+
+backtomenu=input("1- Back to Main menu 2-Exit")
+while backtomenu == "1":
+    Pathq()
+    if Path == "2":
+            new_case()
+    elif Path == "1":
+            donate("1")
+    elif Path == "3":
+            setting("3")
+
+
 print("Thank You for using our app\n Always remember that the happiest people are not those getting more, but those giving more.")
