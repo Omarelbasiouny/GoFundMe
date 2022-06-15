@@ -185,7 +185,7 @@ donate(Path)
 
 def setting(Path):
     if Path == "3":
-        SettQ = input("1\ Edit\n 2\ Delete")
+        SettQ = input("1- Edit\n 2- Delete\n 3-list your Cases")
     if SettQ == "2":
         rm_case_id= input("Enter the id of the case you want to delete")
         PWRD = input("Password:")
@@ -198,6 +198,20 @@ def setting(Path):
     elif SettQ == "1":
         print("Sorry, Editing is not supported currently ")
         setting(3)
+
+    elif SettQ == "3":
+        PWRD = input("Enter your Password:")
+        listoffilenames = []
+        for x in os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases"):
+            lpass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+x
+            listoffilenames.append(lpass)
+        for item in listoffilenames:
+            with open (item, "r") as searchfile:
+                h = searchfile.readlines()[6]
+                if h == PWRD:
+                    searchresult = []
+                    searchresult.append(item)
+        print([w[59:] for w in searchresult])
     else:
         setting(3)
 
