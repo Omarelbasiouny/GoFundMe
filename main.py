@@ -199,9 +199,41 @@ def setting(Path):
                        print("Wrong Password!")
 
         elif SettQ == "1":
-            print("Sorry, Editing is not supported currently ")
-            setting(3)
+            def replace_line(file_name, line_num, text):
+                lines = open(file_name, 'r').readlines()
+                text = text + "\n"
+                lines[line_num] = text
+                out = open(file_name, 'w')
+                out.writelines(lines)
+                out.close()
 
+            def set_e_date():
+                global e_date
+                e_date = input("End Date dd/mm/yyyy")
+                try:
+                    datetime.datetime.strptime(e_date, "%d-%m-%Y")
+                except ValueError:
+                    print("Write date in the shown format dd-mm-yyyy")
+                    set_e_date()
+
+            rm_case_id = input("Enter the id of the case you want to Edit")
+            PWRD = input("Password:")
+            rmd_case = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/") + rm_case_id
+            with open(rmd_case, "r") as rmd_case_file:
+                if rmd_case_file.readlines()[6] == PWRD:
+                    editcase = input("What do you want to Edit\n 1- Details \n 2- Donations needed\n 3- End Date")
+                    if editcase == "1":
+                        dtls_edit_var = input("Type your new details")
+                        replace_line(rmd_case, 1, dtls_edit_var)
+                    elif editcase == "2":
+                        dtls_edit_var = input("Type your new donations needed")
+                        replace_line(rmd_case, 3, dtls_edit_var)
+                    elif editcase == "3":
+                        set_e_date()
+                        dtls_edit_var = e_date
+                        replace_line(rmd_case, 5, dtls_edit_var)
+                else:
+                    print("Wrong Password")
         elif SettQ == "3":
             PWRD = input("Enter your Password:")
             listoffilenames = []
