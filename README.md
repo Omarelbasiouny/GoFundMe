@@ -19,7 +19,7 @@ Edit/verify = verify the User by the checking password in the file
 delete* = remove file from dir
 delete/verify = verify the User by the checking password in the file
 
-listMyCases = loop on files and get files contain user's password
+listMyCases = loop on files and get files that contain user's password
 
 
 
