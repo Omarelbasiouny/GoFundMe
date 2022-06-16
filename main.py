@@ -154,7 +154,7 @@ def donate(Path):
     if Path == "1":
         find_case = input(" 1-Enter Case ID\n 2-List 'PeopleInNeed' Cases\n 3-Charity Organizations\n 4- Search by date")
         def findcase(find_case):
-            searchresult = []
+            searchresult = ""
             if find_case == "1":
                 case_id = input("please enter the case ID")
                 casepass = str(dirpath)+"/Cases/"+case_id
@@ -193,8 +193,8 @@ def donate(Path):
                             #print(repr(search_date))
                             if search_date == h:
                                 print("found match")
-                                searchresult.append(item)
-                                print([w[59:] for w in searchresult])
+                                searchresult = item
+                                print(os.path.basename(searchresult))
                 if searchresult == []:
                         print("No match found")
 
@@ -257,7 +257,7 @@ def setting(Path):
                 else:
                     print("Wrong Password")
         elif SettQ == "3":
-            searchresult = []
+            searchresult = ""
             PWRD = input("Enter your Password:")
             listoffilenames = []
             for x in os.listdir(str(dirpath)+"/Cases"):
@@ -268,9 +268,9 @@ def setting(Path):
                         h = searchfile.readlines()[6]
                         if h == PWRD:
 
-                            searchresult.append(item)
-                            print([w[59:] for w in searchresult])
-            if searchresult == []:
+                            searchresult = item
+                            print(os.path.basename(searchresult))
+            if searchresult == "":
                 print("You have no cases")
 
 
