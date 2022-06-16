@@ -4,7 +4,7 @@ sign up* = make new line in Auth.csv
 log in* = loop on Auth.csv to verify E-mail&Password are in column1&2 of the same row
 
 new case* = make a text file saved in dir "Cases". | 
-new case/file contents = file contain [ title, details, money needed(target), start date, end date, creator password] seprated by "\n". | 
+new case/file contents = file contain [ title, details, money needed(target), start date, end date, creator password] seprated by "\n" and verifyed by regex they are in the right format. | 
 new case/ID = Urgency level(input) - title - random number from 1:9999  E.g.: 3GoFundMe0822
 
 Donate = the donated money subtracted by target and overwritten as the target
