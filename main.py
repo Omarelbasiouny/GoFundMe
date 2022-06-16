@@ -195,7 +195,7 @@ def donate(Path):
                                 print("found match")
                                 searchresult = item
                                 print(os.path.basename(searchresult))
-                if searchresult == []:
+                if searchresult == "":
                         print("No match found")
 
 
