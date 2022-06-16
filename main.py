@@ -10,82 +10,82 @@ regex_PWRD = "(?=.*\d)(?=.*[A-Z])\w{8,}"       # At least 1Num, 1Uppercase, 8 or
 regex_MN = "^[0][1][0125]\d{8,8}$"
 regex_target = "\d+$"
 
-# # Title
-# print("GoFundMe App!")
-#
-# # # STEP 1 App Authentication
-# def loginQ():
-#     global Auth
-#     Auth = (input(" 1-Signup\n 2-Login\n"))
-# loginQ()
-# if  Auth != "1" and Auth != "2":
-#      loginQ()
-# def signup(Auth):
-#     i = 0
-#     if Auth == "1" :
-#         global PWRD
-#         print("Please Enter the required information to Signup")
-#         FN = input("First Name:")
-#         LN = input("Last Name:")
-#         EML = input("E-mail:")
-#         while not re.search(regex_EML, EML):
-#             EML = input("Please Enter Your E-mail Correctly\n")
-#         PWRD = input("Password:")
-#         while not re.search(regex_PWRD, PWRD):
-#             print("Your Password is Weak \n It should have at least \n 8 characters \n One Uppercase letter \n One digit")
-#             PWRD = input("Try Stronger Password:")
-#         CFPWRD = input("Confirm Password:")
-#         while not CFPWRD == PWRD:
-#             print("This don't match your assigned Password")
-#             CFPWRD = input("Reconfirm your Password:\n")
-#             i+=1
-#             if i == 3:
-#                 print(" Too many attempts!")
-#                 signup()
-#
-#         MN = input("Mobile Number:\n")
-#         while not re.search(regex_MN, MN):
-#             MN = input("Please enter your number correctly\n")
-#         New_User = [EML, PWRD, FN, LN, MN]
-#         with(open('Auth.csv', 'a')) as Authfile:
-#             csv_writer = csv.writer(Authfile)
-#             csv_writer.writerow(New_User)
-#     Applogin("2")
-#
-# def Applogin(Auth):
-#     if Auth == "2":
-#         global PWRD
-#         print("login")
-#         with(open('Auth.csv', 'r')) as Authfile:
-#             reader = csv.reader(Authfile)
-#             EML = input("E-mail: ")
-#             PWRD = input("Password: ")
-#
-#             for row in reader:
-#                 if row[0]==EML and row[1]==PWRD:
-#                     login = True
-#                     break
-#                 else:
-#                     login = False
-#         if login == True:
-#             print("Welcome", row[2])
-#
-#         elif login == False:
-#             print("Wrong E-mail or Password")
-#             wrong_credentials = input("Do you want to signup a new account y/n")
-#             if wrong_credentials == "y":
-#                 signup("1")
-#             elif wrong_credentials == "n":
-#                 Applogin("2")
-#             else:
-#                 exit()
-#
-# if Auth == "1":
-#     signup(Auth)
-# elif Auth == "2":
-#     Applogin(Auth)
-# else:
-#     exit()
+# Title
+print("GoFundMe App!")
+
+# # STEP 1 App Authentication
+def loginQ():
+    global Auth
+    Auth = (input(" 1-Signup\n 2-Login\n"))
+loginQ()
+if  Auth != "1" and Auth != "2":
+     loginQ()
+def signup(Auth):
+    i = 0
+    if Auth == "1" :
+        global PWRD
+        print("Please Enter the required information to Signup")
+        FN = input("First Name:")
+        LN = input("Last Name:")
+        EML = input("E-mail:")
+        while not re.search(regex_EML, EML):
+            EML = input("Please Enter Your E-mail Correctly\n")
+        PWRD = input("Password:")
+        while not re.search(regex_PWRD, PWRD):
+            print("Your Password is Weak \n It should have at least \n 8 characters \n One Uppercase letter \n One digit")
+            PWRD = input("Try Stronger Password:")
+        CFPWRD = input("Confirm Password:")
+        while not CFPWRD == PWRD:
+            print("This don't match your assigned Password")
+            CFPWRD = input("Reconfirm your Password:\n")
+            i+=1
+            if i == 3:
+                print(" Too many attempts!")
+                signup()
+
+        MN = input("Mobile Number:\n")
+        while not re.search(regex_MN, MN):
+            MN = input("Please enter your number correctly\n")
+        New_User = [EML, PWRD, FN, LN, MN]
+        with(open('Auth.csv', 'a')) as Authfile:
+            csv_writer = csv.writer(Authfile)
+            csv_writer.writerow(New_User)
+    Applogin("2")
+
+def Applogin(Auth):
+    if Auth == "2":
+        global PWRD
+        print("login")
+        with(open('Auth.csv', 'r')) as Authfile:
+            reader = csv.reader(Authfile)
+            EML = input("E-mail: ")
+            PWRD = input("Password: ")
+
+            for row in reader:
+                if row[0]==EML and row[1]==PWRD:
+                    login = True
+                    break
+                else:
+                    login = False
+        if login == True:
+            print("Welcome", row[2])
+
+        elif login == False:
+            print("Wrong E-mail or Password")
+            wrong_credentials = input("Do you want to signup a new account y/n")
+            if wrong_credentials == "y":
+                signup("1")
+            elif wrong_credentials == "n":
+                Applogin("2")
+            else:
+                exit()
+
+if Auth == "1":
+    signup(Auth)
+elif Auth == "2":
+    Applogin(Auth)
+else:
+    exit()
 
 def Pathq():
     global Path
