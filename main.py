@@ -4,6 +4,8 @@ import os
 import datetime
 import random
 import fileinput
+import pathlib
+dirpath = pathlib.Path().resolve()
 # regEX Values
 regex_EML = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"    # E-mail Confirmation
 regex_PWRD = "(?=.*\d)(?=.*[A-Z])\w{8,}"       # At least 1Num, 1Uppercase, 8 or more characters
@@ -136,7 +138,7 @@ def new_case():
         filecom = [title, details,"I still need", target, s_date, e_date, PWRD]
         filecom1 = "\n".join(filecom)
         x = str(random.randint(1, 9999))
-        save_path = "/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/"
+        save_path = str(dirpath)+"/Cases/"
         file_name = Urgency+str(title)+x
         print("Your case id is", file_name)
 
@@ -155,7 +157,7 @@ def donate(Path):
             searchresult = []
             if find_case == "1":
                 case_id = input("please enter the case ID")
-                casepass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+case_id
+                casepass = str(dirpath)+"/Cases/"+case_id
                 with open(casepass, "r") as case_fileR:
                         print("\n".join(case_fileR.readlines()[1:6]))
                 with open(casepass, "r") as case_fileR:
@@ -170,19 +172,19 @@ def donate(Path):
                     print(line, end="")
             elif find_case == "2":
                 print("Cases are listed from the highest to least Urgent")
-                print(sorted(os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases"), reverse=True))
+                print(sorted(os.listdir(str(dirpath)+"/Cases"), reverse=True))
                 findcase("1")
             elif find_case == "3":
-                print(os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/organizations"))
+                print(os.listdir(str(dirpath)+"/organizations"))
                 about = input("Enter Organization Name")
-                Organpass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/organizations/")+about
+                Organpass = str(dirpath)+"/organizations/"+about
                 with open (Organpass, "r") as readorgan:
                     print(readorgan.read())
             elif find_case == "4":
                 search_date = input("Enter Start Date dd-mm-yyyy")+"\n"
                 listoffilenames = []
-                for x in os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases"):
-                    lpass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/") + x
+                for x in os.listdir(str(dirpath)+"/Cases/"):
+                    lpass = str(dirpath)+"/Cases/" + x
                     listoffilenames.append(lpass)
                 for item in listoffilenames:
                         with open(item, "r") as searchfile:
@@ -210,7 +212,7 @@ def setting(Path):
         if  SettQ == "2":
             rm_case_id= input("Enter the id of the case you want to delete")
             PWRD = input("Password:")
-            rmd_case = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+rm_case_id
+            rmd_case = str(dirpath)+"/Cases/"+rm_case_id
             with open(rmd_case, "r") as rmd_case_file:
                    if rmd_case_file.readlines()[6] == PWRD:
                        os.remove(rmd_case)
@@ -238,7 +240,7 @@ def setting(Path):
 
             rm_case_id = input("Enter the id of the case you want to Edit")
             PWRD = input("Password:")
-            rmd_case = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/") + rm_case_id
+            rmd_case = str(dirpath)+"/Cases/" + rm_case_id
             with open(rmd_case, "r") as rmd_case_file:
                 if rmd_case_file.readlines()[6] == PWRD:
                     editcase = input("What do you want to Edit\n 1- Details \n 2- Donations needed\n 3- End Date")
@@ -258,8 +260,8 @@ def setting(Path):
             searchresult = []
             PWRD = input("Enter your Password:")
             listoffilenames = []
-            for x in os.listdir("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases"):
-                lpass = str("/Users/omarelbasiouny/PycharmProjects/pythonProject1/Cases/")+x
+            for x in os.listdir(str(dirpath)+"/Cases"):
+                lpass = str(dirpath)+"/Cases/"+x
                 listoffilenames.append(lpass)
             for item in listoffilenames:
                     with open (item, "r") as searchfile:
