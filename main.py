@@ -43,7 +43,7 @@ def signup(Auth):
             i+=1
             if i == 3:
                 print(" Too many attempts!")
-                signup(1)
+                signup("1")
 
         MN = input("Mobile Number:\n")
         while not re.search(regex_MN, MN):
