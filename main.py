@@ -11,7 +11,7 @@ regex_EML = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"    # E-mail Confirmatio
 regex_PWRD = "(?=.*\d)(?=.*[A-Z])\w{8,}"       # At least 1Num, 1Uppercase, 8 or more characters
 regex_MN = "^[0][1][0125]\d{8,8}$"
 regex_target = "\d+$"
-
+PWRD = ""
 # Title
 print("GoFundMe App!")
 
@@ -211,7 +211,7 @@ def setting(Path):
         SettQ = input("SETTING\n 1- Edit\n 2- Delete\n 3-list your Cases")
         if  SettQ == "2":
             rm_case_id= input("Enter the id of the case you want to delete")
-            PWRD = input("Password:")
+            #PWRD = input("Password:")
             rmd_case = str(dirpath)+"/Cases/"+rm_case_id
             with open(rmd_case, "r") as rmd_case_file:
                    if rmd_case_file.readlines()[6] == PWRD:
@@ -239,7 +239,7 @@ def setting(Path):
                     set_e_date()
 
             rm_case_id = input("Enter the id of the case you want to Edit")
-            PWRD = input("Password:")
+            #PWRD = input("Password:")
             rmd_case = str(dirpath)+"/Cases/" + rm_case_id
             with open(rmd_case, "r") as rmd_case_file:
                 if rmd_case_file.readlines()[6] == PWRD:
@@ -258,7 +258,7 @@ def setting(Path):
                     print("Wrong Password")
         elif SettQ == "3":
             searchresult = ""
-            PWRD = input("Enter your Password:")
+            #PWRD = input("Enter your Password:")
             listoffilenames = []
             for x in os.listdir(str(dirpath)+"/Cases"):
                 lpass = str(dirpath)+"/Cases/"+x
